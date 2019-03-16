@@ -1,4 +1,4 @@
-# tiraLab-Luolasto
+# Luolastogeneraattori - Cave
 Tiralab 4 periodi 2019
 
 **Cave** on luolasto generaattori sovellus jolla voi generoida erikokoisia luolastoja, jotka rakentuvat erikokoisista huoneista ja käytävistä.
