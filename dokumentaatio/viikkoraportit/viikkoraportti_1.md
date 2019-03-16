@@ -13,3 +13,5 @@ toivon että aihe on kyllin haastava jotta lopputuloksesta saisi vitosen.
 #### seuraavaksi
 Seuraavaksi aion toteuttaa viikon 2 etapit.
 Jos aikaa jää niin aloitan kirjoittamaan pohjaa algoritmille ja hahmottamaan millaisista osista luolasto tulee koostumaan.
+
+**tunnit 4**
