@@ -8,6 +8,8 @@ Huoneet voivat kuitenkin johtaa muihinkin polkuihin mutta nämä usein johtavat 
 
 Jokatapauksessa huoneet ovat kaikki jonkin polun kautta kytköksissä toisiinsa käytävillä, jotka näytetään käyttäjälle huoneiden kera kaksiuloitteisella kartalla sen jälkeen kun sovellukselle on syötetty haluttu huonemäärä.
 
+## Linkit
+
 [viikkoraportit](dokumentaatio/viikkoraportit)
 
 [määrittelydokumentaatio](dokumentaatio/määrittely.md)
