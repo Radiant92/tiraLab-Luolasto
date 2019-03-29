@@ -5,5 +5,8 @@
 | 22.3 | luokkien (Ui, Draw, Sleeve ja Room) luonti | 4 |
 | 22.3 | JFrameen tutustuminen ja visuaalisen luolaston luonti (huone tasolla) | 2 |
 | 22.3 | testaus ja dokumentaatio | 1 |
+| 29.3 | Suunnittelu sivuhuoneiden toteutuksista ja poluista | 1 |
+| 29.3 | CaveMapper luokan ohjelmointi ja muutokset UI:hin | 4 |
+| 29.3 | Testaus ja JFrame | 2 |
 
-**tunnit yhteensä: 10**
+**tunnit yhteensä: 17**
