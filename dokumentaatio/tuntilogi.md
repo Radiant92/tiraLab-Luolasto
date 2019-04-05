@@ -8,5 +8,7 @@
 | 29.3 | Suunnittelu sivuhuoneiden toteutuksista ja poluista | 1 |
 | 29.3 | CaveMapper luokan ohjelmointi ja muutokset UI:hin | 4 |
 | 29.3 | Testaus ja JFrame | 2 |
+| 4.4 | Polkujen suunnittelu | 0.5 |
+| 5.4 | MyList lista rakenteen opiskelu, luonti ja testaus | 5 |
 
-**tunnit yhteensä: 17**
+**tunnit yhteensä: 22.5**
