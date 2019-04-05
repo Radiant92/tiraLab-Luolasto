@@ -14,4 +14,8 @@ Jokatapauksessa huoneet ovat kaikki jonkin polun kautta kytköksissä toisiinsa 
 
 [määrittelydokumentaatio](dokumentaatio/määrittely.md)
 
+[toteutusdokumentaatio](dokumentaatio/toteutus.md)
+
+[testausdokumentaatio](dokumentaatio/testaus.md)
+
 [tuntiloki](dokumentaatio/tuntilogi.md)
