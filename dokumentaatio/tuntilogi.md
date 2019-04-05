@@ -10,5 +10,5 @@
 | 29.3 | Testaus ja JFrame | 2 |
 | 4.4 | Polkujen suunnittelu | 0.5 |
 | 5.4 | MyList lista rakenteen opiskelu, luonti ja testaus | 5 |
-
-**tunnit yhteensä: 22.5**
+| 5.4 | dokumentaatio | 1 |
+**tunnit yhteensä: 23.5**
