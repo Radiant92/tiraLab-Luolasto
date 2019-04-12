@@ -21,7 +21,7 @@ Tässä suoritin testejä, jotka luovat useita luolia tarkistaen että hihoja lu
 ### util
 #### MyList
 MyLististä testasin sen metodien lisäksi sitä, että poisto siirtää oikealla tavalla taulukon elementtejä.
-testauksesta jouduin jättämään get() metodiin liittyvät toiminnot koska en ole viellä keksinyt miten saisin luokan palauttamaan muun kuin object olion.
+Testauksessa on viellä muutama puute joita paikkaan sittenkun polkujen toteutus on tehty.
 ![testikattavuus MyList](https://github.com/Radiant92/tiraLab-Luolasto/blob/master/dokumentaatio/kuvat/MyListCoverage1.png)
 
 ## Testauksen syötteet
