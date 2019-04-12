@@ -9,7 +9,7 @@ import cave.domain.*;
  *
  * It can be used to add, remove and get elements and asked size() for the
  * amount of elements it contains and contains(Object o) to get a boolean value
- * wether the list contains the object or not. removing and getting elements
+ * whether the list contains the object or not. removing and getting elements
  * require it to be given an corresponding index.
  *
  * @author strohm
@@ -37,7 +37,7 @@ public class MyList<E> {
      * initial element given. Depending on the element the constructor assigns a
      * value to inUse and sets head as 0 and counter as 100.
      *
-     * @param e reprecents the elements that the list will contain.
+     * @param e represents the elements that the list will contain.
      */
     public MyList(E e) {
         if (e.getClass() == Integer.class) {
@@ -203,10 +203,10 @@ public class MyList<E> {
      * @param index represents the element that is removed
      */
     public void moveLeftInt(int index) {
-        for (int i = index; i < this.head; i++) {
+        for (int i = index; i < this.head-1; i++) {
             this.intArray[i] = this.intArray[i + 1];
         }
-        this.intArray[head] = 0;
+        this.intArray[head-1] = 0;
     }
 
     /**
@@ -215,10 +215,10 @@ public class MyList<E> {
      * @param index represents the element that is removed
      */
     public void moveLeftRoom(int index) {
-        for (int i = index; i < this.head; i++) {
+        for (int i = index; i < this.head-1; i++) {
             this.roomArray[i] = this.roomArray[i + 1];
         }
-        this.roomArray[head] = null;
+        this.roomArray[head-1] = null;
     }
 
     /**
@@ -227,10 +227,10 @@ public class MyList<E> {
      * @param index represents the element that is removed
      */
     public void moveLeftSleeve(int index) {
-        for (int i = index; i < this.head; i++) {
+        for (int i = index; i < this.head-1; i++) {
             this.sleeveArray[i] = this.sleeveArray[i + 1];
         }
-        this.sleeveArray[head] = null;
+        this.sleeveArray[head-1] = null;
     }
 
     public int size() {

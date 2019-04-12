@@ -77,7 +77,6 @@ public class CaveMapperTest {
     public void noDuplicateSubCaves() {
         MyList<Sleeve> sleeve = new MyList<Sleeve>(s);
         for (int k = 0; k < 1000; k++) {
-            System.out.println(k);
             c = new CaveMapper(1000);
             c.mainCaves();
             sleeve = c.subCaves();
@@ -91,12 +90,11 @@ public class CaveMapperTest {
     public void mainAndSubCavesDontCross() {
         MyList<Sleeve> sleeves = new MyList<Sleeve>(s);
         MyList<Sleeve> subSleeves = new MyList<Sleeve>(s);
-        MyList<Integer> subNums = new MyList<Integer>(1);
         for (int i = 0; i < 1000; i++) {
-            c.habitedSleeves = new MyList<Integer>(1);
-            c.needNeighbours = new MyList<Sleeve>(s);
+            c = new CaveMapper(1000);
             sleeves = c.mainCaves();
             subSleeves = c.subCaves();
+            MyList<Integer> subNums = new MyList<Integer>(1);
             for (int z = 0; z < subSleeves.size(); z++) {
                 subNums.addInteger(subSleeves.getSleeve(z).getNumber());
             }
