@@ -23,4 +23,4 @@ taulukkoon ilman tietämättä sen tyyppiä?
 ### Mitä teen seuraavaksi?
 Seuraavaksi on PAKKO aloittaa polkujen väsäys ja tehdä interactiivinen UI jos ei jo saada aikaiseksi graafista UI:ta
 
-**tunnit: 6.5h**
+**tunnit: 7h**
