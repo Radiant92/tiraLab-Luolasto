@@ -102,7 +102,7 @@ public class MyList<E> {
      */
     public int[] doubleSizeInteger() {
         int increase = 0;
-        if (counter * 2 > Integer.MAX_VALUE) {
+        if (counter >= Integer.MAX_VALUE / 2) {
             increase = Integer.MAX_VALUE;
         } else {
             increase = counter * 2;
@@ -124,7 +124,7 @@ public class MyList<E> {
      */
     public Room[] doubleSizeRoom() {
         int increase = 0;
-        if (counter * 2 > Integer.MAX_VALUE) {
+        if (counter >= Integer.MAX_VALUE / 2) {
             increase = Integer.MAX_VALUE;
         } else {
             increase = counter * 2;
@@ -146,7 +146,7 @@ public class MyList<E> {
      */
     public Sleeve[] doubleSizeSleeve() {
         int increase = 0;
-        if (counter * 2 > Integer.MAX_VALUE) {
+        if (counter >= Integer.MAX_VALUE / 2) {
             increase = Integer.MAX_VALUE;
         } else {
             increase = counter * 2;
@@ -203,10 +203,10 @@ public class MyList<E> {
      * @param index represents the element that is removed
      */
     public void moveLeftInt(int index) {
-        for (int i = index; i < this.head-1; i++) {
+        for (int i = index; i < this.head - 1; i++) {
             this.intArray[i] = this.intArray[i + 1];
         }
-        this.intArray[head-1] = 0;
+        this.intArray[head - 1] = 0;
     }
 
     /**
@@ -215,10 +215,10 @@ public class MyList<E> {
      * @param index represents the element that is removed
      */
     public void moveLeftRoom(int index) {
-        for (int i = index; i < this.head-1; i++) {
+        for (int i = index; i < this.head - 1; i++) {
             this.roomArray[i] = this.roomArray[i + 1];
         }
-        this.roomArray[head-1] = null;
+        this.roomArray[head - 1] = null;
     }
 
     /**
@@ -227,10 +227,10 @@ public class MyList<E> {
      * @param index represents the element that is removed
      */
     public void moveLeftSleeve(int index) {
-        for (int i = index; i < this.head-1; i++) {
+        for (int i = index; i < this.head - 1; i++) {
             this.sleeveArray[i] = this.sleeveArray[i + 1];
         }
-        this.sleeveArray[head-1] = null;
+        this.sleeveArray[head - 1] = null;
     }
 
     public int size() {
