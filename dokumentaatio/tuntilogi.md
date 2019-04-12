@@ -11,4 +11,6 @@
 | 4.4 | Polkujen suunnittelu | 0.5 |
 | 5.4 | MyList lista rakenteen opiskelu, luonti ja testaus | 5 |
 | 5.4 | dokumentaatio | 1 |
-**tunnit yhteensä: 23.5**
+| 11.4 | veraisarviointi (en lisää tätä kokonaistunteihin!) | 1,5 |
+| 12.4 | Testejä, MyList toteutus valmis, kaikki luokat käyttävät listoihinsa MyList toteutusta, javadocsin täydennys | 4 |
+**tunnit yhteensä: 27.5**
