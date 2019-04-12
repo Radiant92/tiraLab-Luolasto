@@ -13,4 +13,5 @@
 | 5.4 | dokumentaatio | 1 |
 | 11.4 | veraisarviointi (en lisää tätä kokonaistunteihin!) | 1,5 |
 | 12.4 | Testejä, MyList toteutus valmis, kaikki luokat käyttävät listoihinsa MyList toteutusta, javadocsin täydennys | 4 |
-**tunnit yhteensä: 27.5**
+| 12.4 | Bugifixaus 2 testiin | 0,5 |
+**tunnit yhteensä: 28**
