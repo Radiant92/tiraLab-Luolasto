@@ -21,7 +21,7 @@ Tässä suoritin testejä, jotka luovat useita luolia tarkistaen että hihoja lu
 ### util
 #### MyList
 MyLististä testasin sen metodien lisäksi sitä, että poisto siirtää oikealla tavalla taulukon elementtejä.
-Testauksessa on viellä muutama puute joita paikkaan sittenkun polkujen toteutus on tehty.
+Testauksessa on viellä muutama puute joita paikkaan sittenkun polkujen toteutus on tehty ja olen tyytyväinen listojen toteutukseen.
 ![testikattavuus MyList](https://github.com/Radiant92/tiraLab-Luolasto/blob/master/dokumentaatio/kuvat/MyListCoverage1.png)
 
 ## Testauksen syötteet
