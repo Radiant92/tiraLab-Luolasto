@@ -2,15 +2,15 @@ package cave.ui;
 
 import cave.domain.Room;
 import cave.domain.Sleeve;
-import java.util.*;
+import cave.util.MyList;
 import javax.swing.JFrame;
 import java.awt.Color;
 import java.awt.Graphics;
 
 /**
  * The class Draw is an early visual concept of the cave complex. By the end of
- * the project it will provide tools for the Ui and draw caverns. For now it
- * shows all rooms in red, and sub-rooms in yellow.
+ * the project it will provide tools for the user interface and draw caverns.
+ * For now it shows all rooms in red, and sub-rooms in yellow.
  *
  * @author strohm
  */
@@ -32,9 +32,12 @@ public class Draw extends JFrame {
         this.graphics = window.getGraphics();
     }
 
-    public void drawRooms(Color color, List<Sleeve> sleeves) {
+    public void drawRooms(Color color, MyList<Sleeve> sleeves) {
         graphics.setColor(color);
-        sleeves.forEach(sleeve -> drawRoom(sleeve));
+        for (int i = 0; i < sleeves.size(); i++) {
+            drawRoom(sleeves.getSleeve(i));
+        }
+
     }
 
     public void drawRoom(Sleeve sleeve) {

@@ -14,7 +14,7 @@ public class Room {
     private int x;
     private int y;
     int size;
-
+    
     public Room(int x, int y, int size) {
         this.size = size;
         this.x = x;

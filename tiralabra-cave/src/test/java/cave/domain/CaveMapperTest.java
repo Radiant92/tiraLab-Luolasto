@@ -1,7 +1,6 @@
 package cave.domain;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import cave.util.MyList;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,6 +14,7 @@ public class CaveMapperTest {
 
     CaveMapper cm;
     CaveMapper c;
+    Sleeve s;
 
     public CaveMapperTest() {
     }
@@ -23,6 +23,7 @@ public class CaveMapperTest {
     public void setUp() {
         cm = new CaveMapper(100);
         c = new CaveMapper(1000);
+        s = new Sleeve(-1);
     }
 
     @After
@@ -31,7 +32,7 @@ public class CaveMapperTest {
 
     @Test
     public void cavernSize100HasOver9Sleeves() {
-        List<Sleeve> sleeves = new ArrayList<>();
+        MyList<Sleeve> sleeves = new MyList<Sleeve>(s);
         for (int i = 0; i < 100; i++) {
             sleeves = cm.mainCaves();
             assertTrue(sleeves.size() > 9);
@@ -40,7 +41,7 @@ public class CaveMapperTest {
 
     @Test
     public void cavernSize1000HasOver99Sleeves() {
-        List<Sleeve> sleeves = new ArrayList<>();
+        MyList<Sleeve> sleeves = new MyList<Sleeve>(s);
         for (int i = 0; i < 100; i++) {
             sleeves = c.mainCaves();
             assertTrue(sleeves.size() > 99);
@@ -63,46 +64,44 @@ public class CaveMapperTest {
 
     @Test
     public void noDuplicateMainCaves() {
-        List<Sleeve> sleeves = new ArrayList<>();
+        MyList<Sleeve> sleeves = new MyList<Sleeve>(s);
         for (int k = 0; k < 1000; k++) {
             sleeves = c.mainCaves();
             for (int i = 1; i < sleeves.size(); i++) {
-                assertTrue(sleeves.get(i - 1).getNumber() != sleeves.get(i).getNumber());
+                assertTrue(sleeves.getSleeve(i - 1).getNumber() != sleeves.getSleeve(i).getNumber());
             }
         }
     }
 
     @Test
     public void noDuplicateSubCaves() {
-        List<Sleeve> sleeve = new ArrayList<>();
+        MyList<Sleeve> sleeve = new MyList<Sleeve>(s);
         for (int k = 0; k < 1000; k++) {
-            c.habitedSleeves.clear();
-            c.needNeighbours.clear();
+            System.out.println(k);
+            c = new CaveMapper(1000);
             c.mainCaves();
             sleeve = c.subCaves();
             for (int i = 1; i < sleeve.size(); i++) {
-                assertTrue(sleeve.get(i - 1).getNumber() != sleeve.get(i).getNumber());
+                assertTrue(sleeve.getSleeve(i - 1).getNumber() != sleeve.getSleeve(i).getNumber());
             }
         }
     }
 
     @Test
     public void mainAndSubCavesDontCross() {
-        List<Sleeve> sleeves = new ArrayList<>();
-        List<Sleeve> subSleeves = new ArrayList<>();
-        List<Integer> subNums = new ArrayList<>();
+        MyList<Sleeve> sleeves = new MyList<Sleeve>(s);
+        MyList<Sleeve> subSleeves = new MyList<Sleeve>(s);
+        MyList<Integer> subNums = new MyList<Integer>(1);
         for (int i = 0; i < 1000; i++) {
-            c.habitedSleeves.clear();
-            c.needNeighbours.clear();
+            c.habitedSleeves = new MyList<Integer>(1);
+            c.needNeighbours = new MyList<Sleeve>(s);
             sleeves = c.mainCaves();
             subSleeves = c.subCaves();
-            subNums = subSleeves.stream().map(a -> a.getNumber()).collect(Collectors.toList());
-
-            for (Sleeve sleeve : sleeves) {
-                if (subNums.contains(sleeve.getNumber())) {
-
-                }
-                assertFalse(subNums.contains(sleeve.getNumber()));
+            for (int z = 0; z < subSleeves.size(); z++) {
+                subNums.addInteger(subSleeves.getSleeve(z).getNumber());
+            }
+            for (int l = 0; l < sleeves.size(); l++) {
+                assertFalse(subNums.contains(sleeves.getSleeve(l).getNumber()));
             }
         }
     }

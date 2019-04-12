@@ -7,9 +7,9 @@ package cave.util;
 
 import cave.domain.*;
 import org.junit.After;
-import org.junit.AfterClass;
+
 import org.junit.Before;
-import org.junit.BeforeClass;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -18,81 +18,106 @@ import static org.junit.Assert.*;
  * @author strohm
  */
 public class MyListTest {
-
+    
     MyList<Sleeve> sleeveList;
     MyList<Integer> intList;
+    MyList<Room> roomList;
     Sleeve s;
-
+    Room r;
+    
     public MyListTest() {
     }
-
+    
     @Before
     public void setUp() {
         s = new Sleeve(1);
-        sleeveList = new MyList<Sleeve>();
-        intList = new MyList<Integer>();
+        r = new Room(1, 1, 3);
+        sleeveList = new MyList<Sleeve>(s);
+        intList = new MyList<Integer>(1);
+        roomList = new MyList<Room>(r);
     }
-
+    
     @After
     public void tearDown() {
     }
-
+    
     @Test
-    public void canInitiateAIntegerAndStringLists() {
-        int i = 0;
-        String s = "0";
-
-        MyList<String> strList = new MyList<String>();
-
-        intList.add(i);
-        strList.add(s);
-
-        assertEquals(1, strList.size());
-        assertEquals(1, intList.size());
+    public void canInitiateAllThreeList() {
+        assertEquals(0, roomList.size());
+        assertEquals(0, intList.size());
+        assertEquals(0, sleeveList.size());
     }
-
+    
     @Test
     public void iniatedListIsEmpty() {
         assertEquals(0, sleeveList.size());
     }
-
+    
     @Test
     public void severalObjectsCanBeAddedIntoList() {
         for (int i = 0; i < 100; i++) {
-            sleeveList.add(s);
+            sleeveList.addSleeve(s);
         }
         assertEquals(100, sleeveList.size());
     }
-
+    
     @Test
     public void removeWorks() {
-        intList.add(0);
-        intList.add(1);
-        intList.add(2);
-
+        intList.addInteger(0);
+        intList.addInteger(1);
+        intList.addInteger(2);
+        
         intList.remove(1);
-
-        assertEquals(2, intList.get(1));
-
+        
+        assertEquals(2, intList.getInteger(1));
+        
         assertEquals(2, intList.size());
     }
-
-    /*
+    
     @Test
-    public void forEachTesti(){
-        for (int i = 0; i<100;i++){
-            intList.add(i);
+    public void forEachWorks() {
+        for (int i = 0; i < 100; i++) {
+            intList.addInteger(i);
         }
-        for(int k = 0; k<100; k++){
-            k = intList.get(k);
+        for (int k = 0; k < 100; k++) {
+            int v = intList.getInteger(k);
+            assertEquals(v, k);
         }
     }
-     */
+    
     @Test
     public void arraySizeWillAdjust() {
         for (int i = 0; i < 1000000; i++) {
-            intList.add(i);
+            intList.addInteger(i);
+            roomList.addRoom(r);
+            sleeveList.addSleeve(s);
         }
         assertEquals(1000000, intList.size());
+        assertEquals(1000000, roomList.size());
+        assertEquals(1000000, sleeveList.size());
+    }
+
+    @Test
+    public void getWorksForAll() {
+        intList.addInteger(1);
+        roomList.addRoom(r);
+        sleeveList.addSleeve(s);
+        
+        assertEquals(1, intList.getInteger(0));
+        assertEquals(r, roomList.getRoom(0));
+        assertEquals(s, sleeveList.getSleeve(0));
+    }
+
+    @Test
+    public void containsWorks() {
+        intList.addInteger(44);
+        roomList.addRoom(r);
+        sleeveList.addSleeve(s);
+        
+        assertTrue(intList.contains(44));
+        assertTrue(sleeveList.contains(s));
+        assertTrue(roomList.contains(r));
+        intList.remove(0);
+        assertFalse(intList.contains(44));
     }
 }
