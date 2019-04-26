@@ -18,13 +18,13 @@ import java.util.Random;
  * @author strohm
  */
 public class CaveMapper {
-    
+
     Random random;
     MyList<Sleeve> needNeighbours;
     MyList<Integer> habitedSleeves;
     Sleeve s;
     int deep;
-    
+
     public CaveMapper(int deep) {
         s = new Sleeve(-1);
         this.random = new Random();
@@ -32,7 +32,14 @@ public class CaveMapper {
         this.habitedSleeves = new MyList<Integer>(1);
         this.deep = deep;
     }
-    
+
+    /**
+     * This method generates the main-cavern, by building a spine-like structure
+     * by choosing at least 1 room per level and a random amount of adjacent
+     * main rooms.
+     *
+     * @return A List of main-caves
+     */
     public MyList mainCaves() {
         MyList<Sleeve> sleeves = new MyList<Sleeve>(s);
         Sleeve important = s;
@@ -58,15 +65,22 @@ public class CaveMapper {
         }
         return sleeves;
     }
-    
+
+    /**
+     * This method is responsible for generating the sub-cavern by randomly
+     * choosing vacant adjacent sleeves, and adding to that list as more caves
+     * are generated.
+     *
+     * @return List of sub-Caves.
+     */
     public MyList subCaves() {
         MyList<Sleeve> sleeves = new MyList<Sleeve>(s);
-        
+
         for (int i = 0; i < deep / 4; i++) {
             int sleeveIndex = random.nextInt(needNeighbours.size());
             Sleeve sleeve = needNeighbours.getSleeve(sleeveIndex);
             MyList<Integer> freeSleeves = getNeighbouringFreeSleeves(sleeve.getNumber());
-            
+
             if (freeSleeves.size() == 0) {
                 needNeighbours.remove(sleeveIndex);
                 i--;
@@ -79,7 +93,13 @@ public class CaveMapper {
         }
         return sleeves;
     }
-    
+
+    /**
+     *
+     * @param number of the sleeve that is being checked for vacant neighbouring
+     * Sleeves.
+     * @return numbers of vacant surrounding sleeves.
+     */
     public MyList getNeighbouringFreeSleeves(int number) {
         MyList<Integer> sleeveNumbers = new MyList<Integer>(1);
         if (number > 9) {
@@ -104,14 +124,24 @@ public class CaveMapper {
         }
         return sleeveNumbers;
     }
-    
+
+    /**
+     *
+     * @param number corresponding Sleeve
+     * @return if said Sleeve is vacant
+     */
     public boolean isEmptySleeve(int number) {
         if (habitedSleeves.contains(number)) {
             return false;
         }
         return true;
     }
-    
+
+    /**
+     *
+     * @param sleeveNumbers available vacant sleeves.
+     * @return The new Sleeve that was created
+     */
     public Sleeve chooseSleeve(MyList<Integer> sleeveNumbers) {
         int number = sleeveNumbers.getInteger(random.nextInt(sleeveNumbers.size()));
         habitedSleeves.addInteger(number);
