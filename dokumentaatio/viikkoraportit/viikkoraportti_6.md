@@ -20,4 +20,4 @@ Scannerin käyttö.
 ### Mitä teen seuraavaksi?
 Graafinen liittymä, koodin siistiminen (Erityisesti caveMapper kaipaa abtrahointia!) ja Testien sekä testidokumentaation laatiminen
 
-**tunnit: 6h**
+**tunnit: 8h**
