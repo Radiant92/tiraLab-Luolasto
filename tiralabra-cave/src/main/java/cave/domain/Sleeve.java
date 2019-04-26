@@ -1,5 +1,6 @@
 package cave.domain;
 
+import cave.util.MyList;
 import java.util.Random;
 
 /**
@@ -27,6 +28,7 @@ public class Sleeve {
 
     /**
      * the constructor determines the space of the sleeve and then populates it.
+     *
      * @param number identifying the sleeve
      */
     public Sleeve(int number) {
@@ -51,8 +53,9 @@ public class Sleeve {
     public Room getRoom() {
         return room;
     }
+
     /**
-     * depending on the random size the method decides where in the sleeve will 
+     * depending on the random size the method decides where in the sleeve will
      * a room be set and the size of the room.
      */
     public void populateSleeve() {

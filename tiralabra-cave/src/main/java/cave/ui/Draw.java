@@ -45,12 +45,28 @@ public class Draw extends JFrame {
         Room r = sleeve.getRoom();
         int x = r.getX() * 5 + 500;
         int y = r.getY() * 8;
+
         int size = r.getSize();
-        graphics.fillRect(x, y, size * 2, size * 2);
+        r.setMiddleX(x + size);
+        r.setMiddleY(y + size);
+        size *= 2;
+        graphics.fillRect(x, y, size, size);
         try {
             Thread.sleep(100);
         } catch (Exception e) {
             System.out.println(e);
+        }
+    }
+
+    public void drawPaths(MyList<Sleeve> sleeves, Color color) {
+        graphics.setColor(color);
+        for (int i = 0; i < sleeves.size() - 1; i++) {
+            Room r1 = sleeves.getSleeve(i).getRoom();
+            MyList<Room> app = r1.getAppendages();
+            for (int a = 0; a < app.size(); a++) {
+                Room r2 = app.getRoom(a);
+                graphics.drawLine(r1.getMiddleX(), r1.getMiddleY(), r2.getMiddleX(), r2.getMiddleY());
+            }
         }
     }
 }

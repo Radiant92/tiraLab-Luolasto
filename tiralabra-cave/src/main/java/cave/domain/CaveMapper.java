@@ -18,13 +18,13 @@ import java.util.Random;
  * @author strohm
  */
 public class CaveMapper {
-
+    
     Random random;
     MyList<Sleeve> needNeighbours;
     MyList<Integer> habitedSleeves;
     Sleeve s;
     int deep;
-
+    
     public CaveMapper(int deep) {
         s = new Sleeve(-1);
         this.random = new Random();
@@ -32,18 +32,25 @@ public class CaveMapper {
         this.habitedSleeves = new MyList<Integer>(1);
         this.deep = deep;
     }
-
+    
     public MyList mainCaves() {
         MyList<Sleeve> sleeves = new MyList<Sleeve>(s);
-
+        Sleeve important = s;
         for (int i = 5; i < deep; i += 10) {
-            int defRoom = random.nextInt(3) - 2 + i;
-            sleeves.addSleeve(new Sleeve(defRoom));
-            habitedSleeves.addInteger(defRoom);
+            int defSleeve = random.nextInt(3) - 2 + i;
+            Sleeve mainSleeve = new Sleeve(defSleeve);
+            sleeves.addSleeve(mainSleeve);
+            habitedSleeves.addInteger(defSleeve);
             needNeighbours.addSleeve(sleeves.getSleeve(sleeves.size() - 1));
+            if (i > 10) {
+                mainSleeve.getRoom().addAppendage(important.getRoom());
+            }
+            important = mainSleeve;
             for (int k = 3; k < 6; k++) {
-                if (random.nextInt(20) % 10 == 0 && k != defRoom) {
-                    sleeves.addSleeve(new Sleeve(i + k));
+                if (random.nextInt(20) % 5 == 0 && k != defSleeve) {
+                    Sleeve lesserSleeve = new Sleeve(i + k);
+                    sleeves.addSleeve(lesserSleeve);
+                    important.getRoom().addAppendage(lesserSleeve.getRoom());
                     habitedSleeves.addInteger(i + k);
                     needNeighbours.addSleeve(sleeves.getSleeve(sleeves.size() - 1));
                 }
@@ -51,26 +58,28 @@ public class CaveMapper {
         }
         return sleeves;
     }
-
+    
     public MyList subCaves() {
         MyList<Sleeve> sleeves = new MyList<Sleeve>(s);
-
+        
         for (int i = 0; i < deep / 4; i++) {
             int sleeveIndex = random.nextInt(needNeighbours.size());
             Sleeve sleeve = needNeighbours.getSleeve(sleeveIndex);
             MyList<Integer> freeSleeves = getNeighbouringFreeSleeves(sleeve.getNumber());
-
+            
             if (freeSleeves.size() == 0) {
                 needNeighbours.remove(sleeveIndex);
                 i--;
                 continue;
             }
-            sleeves.addSleeve(chooseSleeve(freeSleeves));
-            needNeighbours.addSleeve(sleeves.getSleeve(sleeves.size() - 1));
+            Sleeve newSleeve = chooseSleeve(freeSleeves);
+            sleeve.getRoom().addAppendage(newSleeve.getRoom());
+            sleeves.addSleeve(newSleeve);
+            needNeighbours.addSleeve(newSleeve);
         }
         return sleeves;
     }
-
+    
     public MyList getNeighbouringFreeSleeves(int number) {
         MyList<Integer> sleeveNumbers = new MyList<Integer>(1);
         if (number > 9) {
@@ -95,14 +104,14 @@ public class CaveMapper {
         }
         return sleeveNumbers;
     }
-
+    
     public boolean isEmptySleeve(int number) {
         if (habitedSleeves.contains(number)) {
             return false;
         }
         return true;
     }
-
+    
     public Sleeve chooseSleeve(MyList<Integer> sleeveNumbers) {
         int number = sleeveNumbers.getInteger(random.nextInt(sleeveNumbers.size()));
         habitedSleeves.addInteger(number);

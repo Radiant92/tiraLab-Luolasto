@@ -3,7 +3,6 @@ package cave.ui;
 import cave.domain.*;
 import cave.util.MyList;
 import java.awt.Color;
-import java.util.Scanner;
 
 /**
  * The user interface class will provide options on how the caverns will be
@@ -19,22 +18,34 @@ import java.util.Scanner;
 public class Ui {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("How deep should we dig? (100, 200, 300... n*100)");
         int deep = 200;
 
         CaveMapper cMapper = new CaveMapper(deep);
         Draw d = new Draw(1920, 1200, "Cavern");
 
+        long time = System.currentTimeMillis();
         MyList mainCaves = cMapper.mainCaves();
+        time = System.currentTimeMillis() - time;
+        System.out.println("time " + time);
         d.drawRooms(Color.RED, mainCaves);
+        long entireTime = time;
 
+        time = System.currentTimeMillis();
         MyList subCaves = cMapper.subCaves();
+        time = System.currentTimeMillis() - time;
         d.drawRooms(Color.GREEN, subCaves);
 
+        System.out.println("sub-room buid time: " + time);
+        entireTime += time;
+        System.out.println("entire time: " + entireTime);
+
+        //Paths paths = new Paths(mainCaves, subCaves, deep);
+       
+        d.drawPaths(mainCaves, Color.BLUE);
+        d.drawPaths(subCaves, Color.PINK);
+
         try {
-            Thread.sleep(5000);
+            Thread.sleep(10000);
         } catch (Exception e) {
             System.out.println(e);
         }
