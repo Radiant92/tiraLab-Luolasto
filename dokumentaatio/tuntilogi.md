@@ -15,4 +15,8 @@
 | 12.4 | Testejä, MyList toteutus valmis, kaikki luokat käyttävät listoihinsa MyList toteutusta, javadocsin täydennys | 4 |
 | 12.4 | Bugifixaus 2 testiin | 0,5 |
 | 12.4 | Dokumentointi ja testien viilaus | 1 |
-**tunnit yhteensä: 29**
+| 26.4 | Vertaisarviointi | 2 |
+| 26.4 | Scannerin käyttö (epäonnistunut) polku luokka (vanha) | 2 |
+| 26.4 | Polkujen generointi | 2 |
+| 26.4 | muutoksia, korjailuja ja generoinnin muokkailua/testailua | 2 |
+**tunnit yhteensä: 35**
