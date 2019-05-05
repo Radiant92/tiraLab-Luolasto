@@ -19,4 +19,5 @@
 | 26.4 | Scannerin käyttö (epäonnistunut) polku luokka (vanha) | 2 |
 | 26.4 | Polkujen generointi | 2 |
 | 26.4 | muutoksia, korjailuja ja generoinnin muokkailua/testailua | 2 |
-**tunnit yhteensä: 35**
+| 5.5 | UI valmis | 2 |
+**tunnit yhteensä: 37**
