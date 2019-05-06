@@ -47,10 +47,16 @@ public class Ui extends Application {
         TextField mainCavernTime = new TextField("0");
         TextField subCavernTime = new TextField("0");
         TextField totalTime = new TextField("0");
+        TextField mainCount = new TextField("0");
+        TextField subCount = new TextField("0");
         mainCavernTime.setEditable(false);
         subCavernTime.setEditable(false);
         totalTime.setEditable(false);
+        mainCount.setEditable(false);
+        subCount.setEditable(false);
 
+        Label mainCountLabel = new Label("Main caves");
+        Label subCountLabel = new Label("Sub caves");
         Label mainLabel = new Label("Main-cavern build time/sec");
         Label subLabel = new Label("Sub-cavern build time/sec");
         Label totalLabel = new Label("Total build time/sec");
@@ -66,7 +72,9 @@ public class Ui extends Application {
         setDepth.getChildren().addAll(sub, depth, add100, add1K, add10K, add100K, activate, noDraw);
 
         VBox results = new VBox(10);
-        results.getChildren().addAll(mainLabel, mainCavernTime, subLabel, subCavernTime, totalLabel, totalTime, explanation);
+        results.getChildren().addAll(mainLabel, mainCavernTime, subLabel,
+                subCavernTime, totalLabel, totalTime, mainCountLabel, mainCount,
+                subCountLabel, subCount, explanation);
 
         add100.setOnAction((event) -> {
             deep += 100;
@@ -91,10 +99,10 @@ public class Ui extends Application {
             }
         });
         activate.setOnAction((event) -> {
-            createCave(deep, true, mainCavernTime, subCavernTime, totalTime);
+            createCave(deep, true, mainCavernTime, subCavernTime, totalTime, mainCount, subCount);
         });
         noDraw.setOnAction((event) -> {
-            createCave(deep, false, mainCavernTime, subCavernTime, totalTime);
+            createCave(deep, false, mainCavernTime, subCavernTime, totalTime, mainCount, subCount);
         });
 
         pane.setTop(setDepth);
@@ -107,7 +115,7 @@ public class Ui extends Application {
         window.show();
     }
 
-    public static void createCave(int deep, boolean draw, TextField main, TextField sub, TextField total) {
+    public static void createCave(int deep, boolean draw, TextField main, TextField sub, TextField total, TextField mainCount, TextField subCount) {
         CaveMapper cMapper = new CaveMapper(deep);
 
         long time = System.currentTimeMillis();
@@ -127,6 +135,8 @@ public class Ui extends Application {
         entireTime += time;
         seconds = (double) entireTime / 1000;
         total.setText("" + seconds);
+        mainCount.setText("" + mainCaves.size());
+        subCount.setText("" + subCaves.size());
         if (draw) {
             Draw d = new Draw(1920, 1200, "Cavern");
             d.drawRooms(Color.RED, mainCaves);
