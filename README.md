@@ -10,6 +10,8 @@ Jokatapauksessa huoneet ovat kaikki jonkin polun kautta kytköksissä toisiinsa 
 
 ## Linkit
 
+[jar tiedosto](https://github.com/Radiant92/tiraLab-Luolasto/releases/tag/v1.0)
+
 [viikkoraportit](dokumentaatio/viikkoraportit)
 
 [määrittelydokumentaatio](dokumentaatio/määrittely.md)
