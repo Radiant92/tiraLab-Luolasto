@@ -36,11 +36,12 @@ doubleSize- Room, Integer tai sleeve ajassa O(n).
 
 ### Suorituskyky
 Kaikki ajat laskettu millisekunteina.
-Vertaan tässä kahta tapaa generoida subCavern() lista.
+Vertaan tässä kahta tapaa generoida listat.
 
 Ensimmäisessä käytän MyList luokan remove() metodia joka poistaa taulukosta elementin ja siirtää sitten koko taulukkoa vasemmalle.
-Toisessa korvaan remove() metodin taulukolla johon merkataan jos hihalla ei ole enää vapaita naapureita.
+Toisessa korvaan remove() metodin taulukolla subCavern() metodissa, johon merkataan jos hihalla ei ole enää vapaita naapureita.
 
+**Kuvissa y-axis on aika millisekunteina ja x-axis on luolaston syvyys**
 #### Aika remove() metodilla O(n)
 |mainCaves listan generointi| subCaves listan generointi | kokonaisaika | päähuoneiden määrä | sivuhuoneiden määrä | syvyys |
 |:---:|:---:|:---:|:---:|:---:|:---:|
@@ -53,7 +54,7 @@ Toisessa korvaan remove() metodin taulukolla johon merkataan jos hihalla ei ole 
 | 471 | 102 535 | 103 006 | 800 673 | 1 250 000 | 5mil |
 | 579 | 414 031 | 414 610 | 1 598 878 | 2 500 000 | 10mil |
 
-![removella](dokumentaatio/kuvat/removella)
+![removella](https://github.com/Radiant92/tiraLab-Luolasto/blob/master/dokumentaatio/kuvat/removella.png)
 
 #### Aika ilman remove() metodia (tilalla taulukko)
 |mainCaves listan generointi| subCaves listan generointi | kokonaisaika | päähuoneiden määrä | sivuhuoneiden määrä | syvyys |
@@ -66,6 +67,8 @@ Toisessa korvaan remove() metodin taulukolla johon merkataan jos hihalla ei ole 
 | 71 | 182 | 253 | 160 095 | 250 000 | 1mil |
 | 394 | 1092 | 1486 | 800 469 | 1 250 000 | 5mil |
 | 668 | 3594 | 4262 | 1 599 148 | 2 500 000 | 10mil |
+
+![ilman removea](https://github.com/Radiant92/tiraLab-Luolasto/blob/master/dokumentaatio/kuvat/ilman_removea.png)
 
 ### Suoritusaika
 
