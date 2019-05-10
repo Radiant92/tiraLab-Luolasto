@@ -76,7 +76,15 @@ subCaves(): O(n) + O(1) = O(n)
 **yhteensä = O(3n) + O(n)**
 
 ### puutteet ja parannusehdotukset
-Contains ja Remove metodit ovat hitaita O(n) ja jouduin sovellusta nopeuttaakseni sivuttamaan molempien käytön (eli listan läpikäynnin) sijaan käyttämään yksinkertaista taulukkoa CaveMapper luokan subCaves() metodissa, jonne merkataan ja josta tarkistetaan onko hihalla vapaita naapureita.
+Contains ja Remove metodit ovat hitaita O(n) ja jouduin sovellusta nopeuttaakseni sivuttamaan molempien käytön (eli listan läpikäynnin) sijaan käyttämään yksinkertaisia taulukoita CaveMapper luokan subCaves() metodissa, jonne merkataan ja josta tarkistetaan onko hihalla vapaita naapureita.
+
+Tämän seurauksena metodi sivuhuoneiden luontiin hidastuu huomattavasti koska looppi törmää usein jo läpikäytyyn hihaan.
+Vertailu kuitenkin osoitti, että taulukointi on huomattavasti nopeampaa kuin vain Remove() metodin käyttö.
+
+Contains() metodi toisaalta oli täysin turha.
+Toinen nopeutus oli ennakoida paljonko tilaa kukin lista tarvitsi ja syöttää tämä tieto taulukon luonnissa jolloin vältti hitaan taulukon koon suurennuksen. 
+
+Ideaali tilanteessa tosin tähänkin olisi voinut löytää jonkun elegantimman ratkaisun.
 
 ### Lähteet
 
