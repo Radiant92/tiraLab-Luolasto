@@ -4,28 +4,26 @@
 ### Yksikkötestit
 ![testikattavuus raportti](https://github.com/Radiant92/tiraLab-Luolasto/blob/master/dokumentaatio/kuvat/cave-coverage1.png)
 
-#### Ui
-ei testausta, tämä luokka saattaa saada testejä mutta pääosin vain käskee muita luokkia
-
-#### Draw
-samoin kuin Ui tämäkin saattaa saada testejä kun se on valmis.
+### Luokat ilman testausta Paketissa ui
+Tässä paketissa on luokat Draw ja Ui joilla ei ole sovelluslogiikan kanssa muuta tekemistä kuin, että ui kutsuu CaveMapper
+luokkaa toteuttamaan luolastojen rakennuksen.
+Näille luokille en nähnyt tarvetta suorittaa testejä.
 
 ### domain
 #### Sleeve
 Muutama testi riittää tämän luokan testaukseen eli: hihojen koordinaatit suhteessa niiden numeroon on oikein ja huone on hihan sisällä.
 #### Room
-Huoneitakin testasin ihan vain muutamalla testistillä jotka tarkistivat, että huone palauttaa tietonsa oikein
+Huoneitakin testasin ihan vain muutamalla testistillä jotka tarkistivat, että huone palauttaa tietonsa oikein ja kykenee
+lisäämään itselleen listan muita huoneita polkujen piirtämistä varten.
+
 #### CaveMapper
 Tässä suoritin testejä, jotka luovat useita luolia tarkistaen että hihoja luodaan tarpeeksi ja, ettei huoneita luoda päällekkäin sivuhuoneiden kanssa. 
 
 ### util
 #### MyList
 MyLististä testasin sen metodien lisäksi sitä, että poisto siirtää oikealla tavalla taulukon elementtejä.
-Testauksessa on viellä muutama puute joita paikkaan sittenkun polkujen toteutus on tehty ja olen tyytyväinen listojen toteutukseen.
+Testauksessa näkyy puutteita kohdissa jotka eivät koskaan tapahdu.
 ![testikattavuus MyList](https://github.com/Radiant92/tiraLab-Luolasto/blob/master/dokumentaatio/kuvat/MyListCoverage1.png)
 
-## Testauksen syötteet
-
 ## Miten testit voidaan toistaa
-
-## Tulokset graafisessa muodossa
+Kaikki testit ovat Junit yksikkötestejä ja ne voi suorittaa ilman mitään erityistä dataa.
