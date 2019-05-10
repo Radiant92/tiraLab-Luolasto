@@ -28,10 +28,12 @@ public class CaveMapper {
      * Sleeves that are already inhabited (no need for slow contains method).
      */
     int[] habitedSleeves;
+    int[] full;
     Sleeve s;
     int deep;
 
     public CaveMapper(int deep) {
+        full = new int[deep + 1];
         s = new Sleeve(-1);
         this.random = new Random();
         this.needNeighbours = new MyList<Sleeve>(s, deep);
@@ -45,7 +47,8 @@ public class CaveMapper {
      * by choosing at least 1 room per level and a random amount of adjacent
      * main rooms.
      *
-     * Time complexity O(n * 3)
+     * Time complexity O(3n), because sleeves size is equal to depth so no
+     * doubleSize can happen.
      *
      * @return A List of main-caves
      */
@@ -79,7 +82,7 @@ public class CaveMapper {
      * This method is responsible for generating the sub-cavern by randomly
      * choosing vacant adjacent sleeves, and adding to that list as more caves
      * are generated. The amount of rooms has been limited to 25 percent of the
-     * debth.
+     * depth.
      *
      * Time complexity O(n)
      *
@@ -87,16 +90,16 @@ public class CaveMapper {
      */
     public MyList subCaves() {
         MyList<Sleeve> sleeves = new MyList<Sleeve>(s, deep / 4 + 100);
-
         for (int i = 0; i < deep / 4; i++) {
             int sleeveIndex = random.nextInt(needNeighbours.size());
-
+            if (full[sleeveIndex] == 1) {
+                i--;
+                continue;
+            }
             Sleeve sleeve = needNeighbours.getSleeve(sleeveIndex);
             MyList<Integer> freeSleeves = getNeighbouringFreeSleeves(sleeve.getNumber());
-
             if (freeSleeves.size() == 0) {
-                needNeighbours.remove(sleeveIndex);
-
+                full[sleeveIndex] = 1;
                 i--;
                 continue;
             }

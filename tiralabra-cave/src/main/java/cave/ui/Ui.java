@@ -37,6 +37,7 @@ public class Ui extends Application {
         Button add1K = new Button("+1k");
         Button add10K = new Button("+10k");
         Button add100K = new Button("+100k");
+        Button add1mil = new Button("+1mil");
         Button sub = new Button("-100");
         Button activate = new Button("Activate");
         Button noDraw = new Button("dont draw");
@@ -49,7 +50,7 @@ public class Ui extends Application {
         TextField totalTime = new TextField("0");
         TextField mainCount = new TextField("0");
         TextField subCount = new TextField("0");
-        
+
         mainCavernTime.setEditable(false);
         subCavernTime.setEditable(false);
         totalTime.setEditable(false);
@@ -58,9 +59,9 @@ public class Ui extends Application {
 
         Label mainCountLabel = new Label("Main caves");
         Label subCountLabel = new Label("Sub caves");
-        Label mainLabel = new Label("Main-cavern build time/sec");
-        Label subLabel = new Label("Sub-cavern build time/sec");
-        Label totalLabel = new Label("Total build time/sec");
+        Label mainLabel = new Label("Main-cavern build time/msec");
+        Label subLabel = new Label("Sub-cavern build time/msec");
+        Label totalLabel = new Label("Total build time/msec");
         Label explanation = new Label("Increase/Decrease depth (min 100).\n"
                 + "choose 'activate' to see a visual representation of the cavern"
                 + " or 'dont draw' to just see the stats of the built cavern.\n\n"
@@ -70,7 +71,7 @@ public class Ui extends Application {
                 + "pink lines = sub path");
 
         HBox setDepth = new HBox(20);
-        setDepth.getChildren().addAll(sub, depth, add100, add1K, add10K, add100K, activate, noDraw);
+        setDepth.getChildren().addAll(sub, depth, add100, add1K, add10K, add100K, add1mil, activate, noDraw);
 
         VBox results = new VBox(10);
         results.getChildren().addAll(mainLabel, mainCavernTime, subLabel,
@@ -93,6 +94,10 @@ public class Ui extends Application {
             deep += 100000;
             depth.setText(deep + "");
         });
+        add1mil.setOnAction((event) -> {
+            deep += 1000000;
+            depth.setText(deep + "");
+        });
         sub.setOnAction((event) -> {
             if (deep > 100) {
                 deep -= 100;
@@ -100,43 +105,39 @@ public class Ui extends Application {
             }
         });
         activate.setOnAction((event) -> {
-            createCave(deep, true, mainCavernTime, subCavernTime, totalTime, mainCount, subCount);
+            createCavern(deep, true, mainCavernTime, subCavernTime, totalTime, mainCount, subCount);
         });
         noDraw.setOnAction((event) -> {
-            createCave(deep, false, mainCavernTime, subCavernTime, totalTime, mainCount, subCount);
+            createCavern(deep, false, mainCavernTime, subCavernTime, totalTime, mainCount, subCount);
         });
 
         pane.setTop(setDepth);
         pane.setCenter(results);
 
-        Scene scene = new Scene(pane, 800, 800);
+        Scene scene = new Scene(pane, 1200, 800);
 
         window.setScene(scene);
         window.setTitle("Cave");
         window.show();
     }
 
-    public static void createCave(int deep, boolean draw, TextField main, TextField sub, TextField total, TextField mainCount, TextField subCount) {
+    public static void createCavern(int deep, boolean draw, TextField main, TextField sub, TextField total, TextField mainCount, TextField subCount) {
         CaveMapper cMapper = new CaveMapper(deep);
 
         long time = System.currentTimeMillis();
         MyList mainCaves = cMapper.mainCaves();
         time = System.currentTimeMillis() - time;
-        double seconds = (double) time / 1000;
-        main.setText("" + seconds);
+        main.setText("" + time);
 
         long entireTime = time;
 
         time = System.currentTimeMillis();
         MyList subCaves = cMapper.subCaves();
         time = System.currentTimeMillis() - time;
-
-        seconds = (double) time / 1000;
-        sub.setText("" + seconds);
+        sub.setText("" + time);
         entireTime += time;
-        seconds = (double) entireTime / 1000;
-        total.setText("" + seconds);
-        
+        total.setText("" + entireTime);
+
         mainCount.setText("" + mainCaves.size());
         subCount.setText("" + subCaves.size());
         if (draw) {
@@ -146,6 +147,10 @@ public class Ui extends Application {
             d.drawPaths(mainCaves, Color.BLUE);
             d.drawPaths(subCaves, Color.PINK);
         }
+    }
+
+    public static double inSeconds(long time) {
+        return (double) time / 1000;
     }
 
 }
