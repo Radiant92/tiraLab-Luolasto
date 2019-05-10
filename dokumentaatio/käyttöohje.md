@@ -2,7 +2,7 @@
 ### Toiminnot
 Ohjelman käynnistyessä ruudulle ilmestyy graafinen käyttöliittymä
 
-![ui]()
+![napit](https://github.com/Radiant92/tiraLab-Luolasto/blob/master/dokumentaatio/kuvat/napit.png)
 
 Käyttäjälle annetaan 8 nappia joilla käyttäjä voi vaikuttaa syvyyteen eli lukemaan joka näkyy kentässä -100 ja +100 napin välissä.
 
@@ -31,7 +31,7 @@ Painamalla "dont draw" sovellus ohittaa piirtämis vaiheen ja vain luo luolaston
 
 Lopulta molemmat napit johtavat siihen, että nappien alapuolella oleviin tulos kenttiin ilmestyy luolaston luomiseen mennyt aika sekä sivu ja pää huoneiden määrät.
 
-![tulosruutu]()
+![tulosruutu](https://github.com/Radiant92/tiraLab-Luolasto/blob/master/dokumentaatio/kuvat/tulos1mil.png)
 
 Sulkemalla kumpi tahansa ikkuna sovellus sulkeutuu.
 
