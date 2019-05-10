@@ -16,16 +16,16 @@ import java.util.Random;
  */
 public class Sleeve {
 
-    final int number;
-    private Room room;
+    int number;
+    Room room;
     /**
      * a coordinate to represent where the starting point of the sleeve is
      */
-    final int x;
+    int x;
     /**
      * a coordinate to represent where the starting point of the sleeve is
      */
-    final int y;
+    int y;
 
     /**
      * the constructor determines the space of the sleeve and then populates it.
@@ -62,22 +62,27 @@ public class Sleeve {
     public void populateSleeve() {
         Random random = new Random();
         int size = random.nextInt(3);
-        int roomX = 0;
-        int roomY = 0;
-
-        if (size == 0) {
-            roomX = random.nextInt(5) + x;
-            roomY = random.nextInt(5) + y;
-            size = 3;
-        } else if (size == 1) {
-            roomX = random.nextInt(3) + x;
-            roomY = random.nextInt(3) + y;
-            size = 5;
-        } else {
-            roomX = x;
-            roomY = y;
-            size = 7;
+        switch (size) {
+            case 0:
+                makeRoom(random.nextInt(5) + x, random.nextInt(5) + y, 3);
+                break;
+            case 1:
+                makeRoom(random.nextInt(3) + x, random.nextInt(3) + y, 5);
+                break;
+            default:
+                makeRoom(x, y, 7);
+                break;
         }
-        this.room = new Room(roomX, roomY, size);
+    }
+
+    /**
+     * creates a new Room that will be inside the sleeve.
+     *
+     * @param x coordinate for the north-west corner of the room
+     * @param y coordinate for the north-west corner of the room
+     * @param size size of the room
+     */
+    public void makeRoom(int x, int y, int size) {
+        this.room = new Room(x, y, size);
     }
 }

@@ -38,6 +38,7 @@ public class Ui extends Application {
         Button add10K = new Button("+10k");
         Button add100K = new Button("+100k");
         Button add1mil = new Button("+1mil");
+        Button reset = new Button("reset");
         Button sub = new Button("-100");
         Button activate = new Button("Activate");
         Button noDraw = new Button("dont draw");
@@ -71,7 +72,7 @@ public class Ui extends Application {
                 + "pink lines = sub path");
 
         HBox setDepth = new HBox(20);
-        setDepth.getChildren().addAll(sub, depth, add100, add1K, add10K, add100K, add1mil, activate, noDraw);
+        setDepth.getChildren().addAll(sub, depth, add100, add1K, add10K, add100K, add1mil, reset, activate, noDraw);
 
         VBox results = new VBox(10);
         results.getChildren().addAll(mainLabel, mainCavernTime, subLabel,
@@ -97,6 +98,10 @@ public class Ui extends Application {
         add1mil.setOnAction((event) -> {
             deep += 1000000;
             depth.setText(deep + "");
+        });
+        reset.setOnAction((event) -> {
+            deep = 100;
+            depth.setText("100");
         });
         sub.setOnAction((event) -> {
             if (deep > 100) {

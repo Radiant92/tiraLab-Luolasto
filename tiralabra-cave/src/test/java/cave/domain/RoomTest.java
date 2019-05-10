@@ -15,26 +15,47 @@ import static org.junit.Assert.*;
  * @author strohm
  */
 public class RoomTest {
+
     Room small;
+
     public RoomTest() {
     }
-    
+
     @Before
     public void setUp() {
         small = new Room(1, 2, 3);
     }
-    
+
     @After
     public void tearDown() {
     }
+
     @Test
-    public void correctCoordinates(){
+    public void correctCoordinates() {
         assertEquals(1, small.getX());
         assertEquals(2, small.getY());
     }
+
     @Test
-    public void correctSize(){
+    public void correctSize() {
         assertEquals(3, small.getSize());
+    }
+
+    @Test
+    public void middleCoordinateGettersAndSettersWork() {
+        small.setMiddleX(3);
+        small.setMiddleY(4);
+        assertEquals(3, small.getMiddleX());
+        assertEquals(4, small.getMiddleY());
+    }
+
+    @Test
+    public void getAppendagesWorks() {
+        small.addAppendage(new Room(3, 2, 3));
+        small.addAppendage(new Room(50, 10000, 5));
+
+        assertEquals(2, small.getAppendages().size());
+        assertEquals(50, small.getAppendages().getRoom(1).getX());
     }
 
 }

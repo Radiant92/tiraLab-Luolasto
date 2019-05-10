@@ -4,8 +4,8 @@ import cave.domain.*;
 
 /**
  * Utility Class "MyList" creates a dynamic list that can be initiated in a
- * similar way as an ArrayList by calling MyList<insert class> name = new
- * MyList<insert class>(insert an integer, Room or Sleeve and the initial size
+ * similar way as an ArrayList by calling MyList name = new
+ * MyList(insert an integer, Room or Sleeve and the initial size
  * of the list);
  *
  * It can be used to add, remove and get elements and asked size() for the
@@ -14,6 +14,8 @@ import cave.domain.*;
  * require it to be given an corresponding index.
  *
  * @author strohm
+ * 
+ * @param <E> Determines the element type the list will hold.
  */
 public class MyList<E> {
 
@@ -114,12 +116,7 @@ public class MyList<E> {
      * @return a bigger array
      */
     public int[] doubleSizeInteger() {
-        int increase = 0;
-        if (counter >= Integer.MAX_VALUE / 2) {
-            increase = Integer.MAX_VALUE;
-        } else {
-            increase = counter * 2;
-        }
+        int increase = doubleTheCounter();
         int[] bigger = new int[increase];
 
         for (int i = 0; i < counter; i++) {
@@ -138,12 +135,7 @@ public class MyList<E> {
      * @return a bigger array
      */
     public Room[] doubleSizeRoom() {
-        int increase = 0;
-        if (counter >= Integer.MAX_VALUE / 2) {
-            increase = Integer.MAX_VALUE;
-        } else {
-            increase = counter * 2;
-        }
+        int increase = doubleTheCounter();
         Room[] bigger = new Room[increase];
 
         for (int i = 0; i < counter; i++) {
@@ -162,19 +154,25 @@ public class MyList<E> {
      * @return a bigger array
      */
     public Sleeve[] doubleSizeSleeve() {
-        int increase = 0;
-        if (counter >= Integer.MAX_VALUE / 2) {
-            increase = Integer.MAX_VALUE;
-        } else {
-            increase = counter * 2;
-        }
+        int increase = doubleTheCounter();
         Sleeve[] bigger = new Sleeve[increase];
-
         for (int i = 0; i < counter; i++) {
             bigger[i] = sleeveArray[i];
         }
         counter = increase;
         return bigger;
+    }
+    /**
+     * Doubles the size of the counter which represents the size of the current
+     * array in use.
+     * @return returns the new size for the list
+     */
+    public int doubleTheCounter() {
+        if (counter >= Integer.MAX_VALUE / 2) {
+            return Integer.MAX_VALUE;
+        }
+        return counter * 2;
+
     }
 
     public int getInteger(int index) {
@@ -206,12 +204,16 @@ public class MyList<E> {
      * @param index which element to remove
      */
     public void remove(int index) {
-        if (inUse == 1) {
-            moveLeftInt(index);
-        } else if (inUse == 2) {
-            moveLeftRoom(index);
-        } else {
-            moveLeftSleeve(index);
+        switch (inUse) {
+            case 1:
+                moveLeftInt(index);
+                break;
+            case 2:
+                moveLeft(index, this.roomArray);
+                break;
+            default:
+                moveLeft(index, this.sleeveArray);
+                break;
         }
         head--;
     }
@@ -235,27 +237,19 @@ public class MyList<E> {
      * Time complexity O(n)
      *
      * @param index represents the element that is removed
+     * @param array the array which is being modified.
      */
-    public void moveLeftRoom(int index) {
+    public void moveLeft(int index, Object[] array) {
         for (int i = index; i < this.head - 1; i++) {
-            this.roomArray[i] = this.roomArray[i + 1];
+            array[i] = array[i + 1];
         }
-        this.roomArray[head - 1] = null;
+        array[head - 1] = null;
     }
-
     /**
-     * moves all the elements of the array left coming after the removed element
-     * Time complexity O(n)
-     *
-     * @param index represents the element that is removed
+     * 
+     * @return returns the "head" index of the array representing the amount of 
+     * elements stored.
      */
-    public void moveLeftSleeve(int index) {
-        for (int i = index; i < this.head - 1; i++) {
-            this.sleeveArray[i] = this.sleeveArray[i + 1];
-        }
-        this.sleeveArray[head - 1] = null;
-    }
-
     public int size() {
         return head;
     }
@@ -267,24 +261,28 @@ public class MyList<E> {
      * @return true or false if the object is found.
      */
     public boolean contains(Object o) {
-        if (inUse == 1) {
-            for (int i = 0; i < head; i++) {
-                if (o.equals(this.intArray[i])) {
-                    return true;
+        switch (inUse) {
+            case 1:
+                for (int i = 0; i < head; i++) {
+                    if (o.equals(this.intArray[i])) {
+                        return true;
+                    }
                 }
-            }
-        } else if (inUse == 2) {
-            for (int i = 0; i < head; i++) {
-                if (o.equals(this.roomArray[i])) {
-                    return true;
+                break;
+            case 2:
+                for (int i = 0; i < head; i++) {
+                    if (o.equals(this.roomArray[i])) {
+                        return true;
+                    }
                 }
-            }
-        } else {
-            for (int i = 0; i < head; i++) {
-                if (o.equals(this.sleeveArray[i])) {
-                    return true;
+                break;
+            default:
+                for (int i = 0; i < head; i++) {
+                    if (o.equals(this.sleeveArray[i])) {
+                        return true;
+                    }
                 }
-            }
+                break;
         }
         return false;
     }

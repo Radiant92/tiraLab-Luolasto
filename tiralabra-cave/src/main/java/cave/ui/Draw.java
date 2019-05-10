@@ -67,6 +67,11 @@ public class Draw extends JFrame {
                 Room r2 = app.getRoom(a);
                 graphics.drawLine(r1.getMiddleX(), r1.getMiddleY(), r2.getMiddleX(), r2.getMiddleY());
             }
+            try {
+                Thread.sleep(100);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         }
     }
 }

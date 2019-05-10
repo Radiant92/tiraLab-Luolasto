@@ -16,22 +16,45 @@ import cave.util.MyList;
  */
 public class Room {
 
+    /**
+     * x coordinate of the north-west corner of the room.
+     */
     private int x;
+    /**
+     * y coordinate of the north-west corner of the room.
+     */
     private int y;
+    /**
+     * x coordinate of the middle of the room.
+     */
     private int middleX;
+    /**
+     * y coordinate of the middle of the room.
+     */
     private int middleY;
+    /**
+     * Represents the size of the room
+     */
     int size;
     private MyList<Room> appendages;
 
+    /**
+     * 
+     * @param x coordinate for the north-west corner of the room
+     * @param y coordinate for the north-west corner of the room
+     * @param size size of the room 
+     */
     public Room(int x, int y, int size) {
         this.size = size;
         this.x = x;
         this.y = y;
-        this.appendages = new MyList<Room>(new Room(), 10);
+        this.appendages = new MyList<>(new Room(), 10);
     }
 
+    /**
+     * Constructs an empty Room object so that a Room can have a list of Rooms.
+     */
     public Room() {
-
     }
 
     public int getX() {
