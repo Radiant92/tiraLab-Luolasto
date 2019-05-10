@@ -15,7 +15,7 @@ Kaksi viimeistä nappia "activate" ja "dont draw" käynnistävät luolaston gene
 
 Painamalla "activate" sovellus luo luolaston jonka jälkeen uusi ruutu avautuu, jossa näytetään visuaalisesti ja hitaasti luolaston rakentuminen. (suosittelen vain pieniä luolastokokoja)
 
-![luolasto]()
+![luolasto](https://github.com/Radiant92/tiraLab-Luolasto/blob/master/dokumentaatio/kuvat/luolasto100.png)
 
 **Punaiset huoneet = Päähuoneet**
 
