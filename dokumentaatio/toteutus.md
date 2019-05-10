@@ -14,10 +14,9 @@ Sovelluksen toiminnaltaan hitain metodi on CaveMapper luokan mainCaves(): O(3n).
 Toisaalta pisin aika menee CaveMapperin metodiin subCaves: O(n), koska tämä joutuu luomaan huoneita (luolan syvyys/4) verran, joista useita läpikäymään useamman kerran (Tilanteet joissa hihalla ei ole enää vapaita naapureita).
 
 #### Muita huomattavia aikavaativuuksia
-##### Room
-- add appendage, joka lisää listaan huoneen toimii O(1) ajassa eikä O(n) koska sen listalle annettu 10 elementin tila 
-  riittää kaikille huoneen mahdollisille poluille.
+Kaikki muut metodit ovat O(1) tai eivät ole osana suoritusta kuten luokat Draw tai Ui.
 
+Paitsi CaveMapperin metodit mainCaves ja subCaves tai luokan MyList metodit:
 ##### MyList
 - add- Room, Integer ja Sleeve metodit kaikki ovat O(1), ellei listan tila ole loppunut jolloin ne kutsuvat metodia 
 doubleSize- Room, Integer tai sleeve ajassa O(n).
@@ -30,7 +29,9 @@ doubleSize- Room, Integer tai sleeve ajassa O(n).
 
 - contains metodi: O(n)
 
-Kaikki muut metodit ovat O(1) tai eivät ole osana suoritusta kuten luokat Draw tai Ui.
+##### Room
+- add appendage, joka lisää listaan huoneen toimii O(1) ajassa eikä O(n) koska sen listalle annettu 10 elementin tila 
+  riittää kaikille huoneen mahdollisille poluille.
 
 ### Suorituskyky
 
