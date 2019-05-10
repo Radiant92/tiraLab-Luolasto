@@ -1,4 +1,10 @@
 # Käyttöohje
+
+### Tiedoston suorittaminen
+Sovelluksen voi käynnistää lataamalla [jar tiedoston](https://github.com/Radiant92/tiraLab-Luolasto/releases/tag/v1.0) haluamaansa kansioon ja menemällä terminaalissa ladatun tiedoston sijaintiin ja kirjoittaa **java -jar tiralabra-cave.jar**
+
+Tai lataamalla koko projekti zip pakettina ja purkaa sieltä jar tiedosto.
+
 ### Toiminnot
 Ohjelman käynnistyessä ruudulle ilmestyy graafinen käyttöliittymä
 
@@ -34,5 +40,3 @@ Lopulta molemmat napit johtavat siihen, että nappien alapuolella oleviin tulos 
 ![tulosruutu](https://github.com/Radiant92/tiraLab-Luolasto/blob/master/dokumentaatio/kuvat/tulos1mil.png)
 
 Sulkemalla kumpi tahansa ikkuna sovellus sulkeutuu.
-
-### Missä hakemistossa on jar ja ajamiseen tarvittavat testitiedostot.
