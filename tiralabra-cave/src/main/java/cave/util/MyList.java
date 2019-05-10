@@ -5,7 +5,8 @@ import cave.domain.*;
 /**
  * Utility Class "MyList" creates a dynamic list that can be initiated in a
  * similar way as an ArrayList by calling MyList<insert class> name = new
- * MyList<insert class>(insert an integer, Room or Sleeve);
+ * MyList<insert class>(insert an integer, Room or Sleeve and the initial size
+ * of the list);
  *
  * It can be used to add, remove and get elements and asked size() for the
  * amount of elements it contains and contains(Object o) to get a boolean value
@@ -35,28 +36,32 @@ public class MyList<E> {
     /**
      * Constructs an array of Integers, Rooms or Sleeves depending on the
      * initial element given. Depending on the element the constructor assigns a
-     * value to inUse and sets head as 0 and counter as 100.
+     * value to inUse and sets head as 0 and counter as the initial size. Time
+     * complexity: O(1)
      *
      * @param e represents the elements that the list will contain.
+     * @param initialSize represents the initial size of the array.
      */
-    public MyList(E e) {
+    public MyList(E e, int initialSize) {
         if (e.getClass() == Integer.class) {
-            this.intArray = new int[100];
+            this.intArray = new int[initialSize];
             inUse = 1;
         } else if (e.getClass() == Room.class) {
-            this.roomArray = new Room[100];
+            this.roomArray = new Room[initialSize];
             inUse = 2;
         } else {
-            this.sleeveArray = new Sleeve[100];
+            this.sleeveArray = new Sleeve[initialSize];
             inUse = 3;
         }
-        this.counter = 100;
+        this.counter = initialSize;
         this.head = 0;
     }
 
     /**
-     * first checks to see if current array is large enought for the new
-     * integer.
+     * first checks to see if current array is large enough for the new integer.
+     * If not, increases the size of the array and then adds the integer
+     *
+     * Time complexity: If array is big enough O(1) else O(n)
      *
      * @param i the integer to be added.
      */
@@ -69,7 +74,10 @@ public class MyList<E> {
     }
 
     /**
-     * first checks to see if current array is large enought for the new room.
+     * first checks to see if current array is large enough for the new room. If
+     * not, increases the size of the array and then adds the integer
+     *
+     * Time complexity: If array is big enough O(1) else O(n)
      *
      * @param r the room to be added.
      */
@@ -82,7 +90,10 @@ public class MyList<E> {
     }
 
     /**
-     * first checks to see if current array is large enought for the new sleeve.
+     * first checks to see if current array is large enough for the new sleeve.
+     * If not, increases the size of the array and then adds the integer
+     *
+     * Time complexity: If array is big enough O(1) else O(n)
      *
      * @param s the sleeve to be added.
      */
@@ -95,10 +106,12 @@ public class MyList<E> {
     }
 
     /**
-     * checs if the increased size will exeed the maximum integer value, if not
+     * checks if the increased size will exeed the maximum integer value, if not
      * the method will double the size of the array and return it to caller
      *
-     * @return
+     * Time complexity O(n)
+     *
+     * @return a bigger array
      */
     public int[] doubleSizeInteger() {
         int increase = 0;
@@ -120,7 +133,9 @@ public class MyList<E> {
      * checks if the increased size will exceed the maximum integer value, if
      * not the method will double the size of the array and return it to caller
      *
-     * @return
+     * Time complexity O(n)
+     *
+     * @return a bigger array
      */
     public Room[] doubleSizeRoom() {
         int increase = 0;
@@ -142,7 +157,9 @@ public class MyList<E> {
      * checks if the increased size will exceed the maximum integer value, if
      * not the method will double the size of the array and return it to caller
      *
-     * @return
+     * Time complexity O(n)
+     *
+     * @return a bigger array
      */
     public Sleeve[] doubleSizeSleeve() {
         int increase = 0;
@@ -184,7 +201,9 @@ public class MyList<E> {
     /**
      * removes the element of the array corresponding to the given index.
      *
-     * @param index
+     * Time complexity O(n)
+     *
+     * @param index which element to remove
      */
     public void remove(int index) {
         if (inUse == 1) {
@@ -200,6 +219,8 @@ public class MyList<E> {
     /**
      * moves all the elements of the array left coming after the removed element
      *
+     * Time complexity O(n)
+     *
      * @param index represents the element that is removed
      */
     public void moveLeftInt(int index) {
@@ -211,6 +232,7 @@ public class MyList<E> {
 
     /**
      * moves all the elements of the array left coming after the removed element
+     * Time complexity O(n)
      *
      * @param index represents the element that is removed
      */
@@ -223,6 +245,7 @@ public class MyList<E> {
 
     /**
      * moves all the elements of the array left coming after the removed element
+     * Time complexity O(n)
      *
      * @param index represents the element that is removed
      */
@@ -237,6 +260,12 @@ public class MyList<E> {
         return head;
     }
 
+    /**
+     * Time complexity O(n)
+     *
+     * @param o the object that is being searched
+     * @return true or false if the object is found.
+     */
     public boolean contains(Object o) {
         if (inUse == 1) {
             for (int i = 0; i < head; i++) {

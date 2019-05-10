@@ -32,9 +32,9 @@ public class MyListTest {
     public void setUp() {
         s = new Sleeve(1);
         r = new Room(1, 1, 3);
-        sleeveList = new MyList<Sleeve>(s);
-        intList = new MyList<Integer>(1);
-        roomList = new MyList<Room>(r);
+        sleeveList = new MyList<Sleeve>(s, 1);
+        intList = new MyList<Integer>(1, 1);
+        roomList = new MyList<Room>(r, 1);
     }
 
     @After

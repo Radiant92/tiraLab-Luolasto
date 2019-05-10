@@ -20,17 +20,24 @@ import java.util.Random;
 public class CaveMapper {
 
     Random random;
+    /**
+     * Pool of sleeves that can be given neighbours.
+     */
     MyList<Sleeve> needNeighbours;
-    MyList<Integer> habitedSleeves;
+    /**
+     * Sleeves that are already inhabited (no need for slow contains method).
+     */
+    int[] habitedSleeves;
     Sleeve s;
     int deep;
 
     public CaveMapper(int deep) {
         s = new Sleeve(-1);
         this.random = new Random();
-        this.needNeighbours = new MyList<Sleeve>(s);
-        this.habitedSleeves = new MyList<Integer>(1);
+        this.needNeighbours = new MyList<Sleeve>(s, deep);
+        this.habitedSleeves = new int[deep + 10];
         this.deep = deep;
+
     }
 
     /**
@@ -38,16 +45,18 @@ public class CaveMapper {
      * by choosing at least 1 room per level and a random amount of adjacent
      * main rooms.
      *
+     * Time complexity O(n * 3)
+     *
      * @return A List of main-caves
      */
     public MyList mainCaves() {
-        MyList<Sleeve> sleeves = new MyList<Sleeve>(s);
+        MyList<Sleeve> sleeves = new MyList<Sleeve>(s, deep);
         Sleeve important = s;
         for (int i = 5; i < deep; i += 10) {
             int defSleeve = random.nextInt(3) - 2 + i;
             Sleeve mainSleeve = new Sleeve(defSleeve);
             sleeves.addSleeve(mainSleeve);
-            habitedSleeves.addInteger(defSleeve);
+            habitedSleeves[defSleeve] = 1;
             needNeighbours.addSleeve(sleeves.getSleeve(sleeves.size() - 1));
             if (i > 10) {
                 mainSleeve.getRoom().addAppendage(important.getRoom());
@@ -58,7 +67,7 @@ public class CaveMapper {
                     Sleeve lesserSleeve = new Sleeve(i + k);
                     sleeves.addSleeve(lesserSleeve);
                     important.getRoom().addAppendage(lesserSleeve.getRoom());
-                    habitedSleeves.addInteger(i + k);
+                    habitedSleeves[i + k] = 1;
                     needNeighbours.addSleeve(sleeves.getSleeve(sleeves.size() - 1));
                 }
             }
@@ -69,20 +78,25 @@ public class CaveMapper {
     /**
      * This method is responsible for generating the sub-cavern by randomly
      * choosing vacant adjacent sleeves, and adding to that list as more caves
-     * are generated.
+     * are generated. The amount of rooms has been limited to 25 percent of the
+     * debth.
+     *
+     * Time complexity O(n)
      *
      * @return List of sub-Caves.
      */
     public MyList subCaves() {
-        MyList<Sleeve> sleeves = new MyList<Sleeve>(s);
+        MyList<Sleeve> sleeves = new MyList<Sleeve>(s, deep / 4 + 100);
 
         for (int i = 0; i < deep / 4; i++) {
             int sleeveIndex = random.nextInt(needNeighbours.size());
+
             Sleeve sleeve = needNeighbours.getSleeve(sleeveIndex);
             MyList<Integer> freeSleeves = getNeighbouringFreeSleeves(sleeve.getNumber());
 
             if (freeSleeves.size() == 0) {
                 needNeighbours.remove(sleeveIndex);
+
                 i--;
                 continue;
             }
@@ -95,13 +109,14 @@ public class CaveMapper {
     }
 
     /**
+     * Time complexity O(1)
      *
      * @param number of the sleeve that is being checked for vacant neighbouring
      * Sleeves.
      * @return numbers of vacant surrounding sleeves.
      */
     public MyList getNeighbouringFreeSleeves(int number) {
-        MyList<Integer> sleeveNumbers = new MyList<Integer>(1);
+        MyList<Integer> sleeveNumbers = new MyList<Integer>(1, 10);
         if (number > 9) {
             if (isEmptySleeve(number - 10)) {
                 sleeveNumbers.addInteger(number - 10);
@@ -126,25 +141,27 @@ public class CaveMapper {
     }
 
     /**
+     * Time complexity O(1)
      *
      * @param number corresponding Sleeve
      * @return if said Sleeve is vacant
      */
     public boolean isEmptySleeve(int number) {
-        if (habitedSleeves.contains(number)) {
+        if (habitedSleeves[number] == 1) {
             return false;
         }
         return true;
     }
 
     /**
+     * Time complexity O(1)
      *
      * @param sleeveNumbers available vacant sleeves.
      * @return The new Sleeve that was created
      */
     public Sleeve chooseSleeve(MyList<Integer> sleeveNumbers) {
         int number = sleeveNumbers.getInteger(random.nextInt(sleeveNumbers.size()));
-        habitedSleeves.addInteger(number);
+        habitedSleeves[number] = 1;
         return new Sleeve(number);
     }
 }

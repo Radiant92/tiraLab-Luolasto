@@ -49,6 +49,7 @@ public class Ui extends Application {
         TextField totalTime = new TextField("0");
         TextField mainCount = new TextField("0");
         TextField subCount = new TextField("0");
+        
         mainCavernTime.setEditable(false);
         subCavernTime.setEditable(false);
         totalTime.setEditable(false);
@@ -135,6 +136,7 @@ public class Ui extends Application {
         entireTime += time;
         seconds = (double) entireTime / 1000;
         total.setText("" + seconds);
+        
         mainCount.setText("" + mainCaves.size());
         subCount.setText("" + subCaves.size());
         if (draw) {

@@ -32,7 +32,7 @@ public class CaveMapperTest {
 
     @Test
     public void cavernSize100HasOver9Sleeves() {
-        MyList<Sleeve> sleeves = new MyList<Sleeve>(s);
+        MyList<Sleeve> sleeves = new MyList<Sleeve>(s, 100);
         for (int i = 0; i < 100; i++) {
             sleeves = cm.mainCaves();
             assertTrue(sleeves.size() > 9);
@@ -41,7 +41,7 @@ public class CaveMapperTest {
 
     @Test
     public void cavernSize1000HasOver99Sleeves() {
-        MyList<Sleeve> sleeves = new MyList<Sleeve>(s);
+        MyList<Sleeve> sleeves = new MyList<Sleeve>(s, 1000);
         for (int i = 0; i < 100; i++) {
             sleeves = c.mainCaves();
             assertTrue(sleeves.size() > 99);
@@ -64,7 +64,7 @@ public class CaveMapperTest {
 
     @Test
     public void noDuplicateMainCaves() {
-        MyList<Sleeve> sleeves = new MyList<Sleeve>(s);
+        MyList<Sleeve> sleeves = new MyList<Sleeve>(s, 1000);
         for (int k = 0; k < 1000; k++) {
             sleeves = c.mainCaves();
             for (int i = 1; i < sleeves.size(); i++) {
@@ -75,7 +75,7 @@ public class CaveMapperTest {
 
     @Test
     public void noDuplicateSubCaves() {
-        MyList<Sleeve> sleeve = new MyList<Sleeve>(s);
+        MyList<Sleeve> sleeve = new MyList<Sleeve>(s, 1000);
         for (int k = 0; k < 1000; k++) {
             c = new CaveMapper(1000);
             c.mainCaves();
@@ -88,13 +88,13 @@ public class CaveMapperTest {
 
     @Test
     public void mainAndSubCavesDontCross() {
-        MyList<Sleeve> sleeves = new MyList<Sleeve>(s);
-        MyList<Sleeve> subSleeves = new MyList<Sleeve>(s);
+        MyList<Sleeve> sleeves = new MyList<Sleeve>(s, 1000);
+        MyList<Sleeve> subSleeves = new MyList<Sleeve>(s, 1000);
         for (int i = 0; i < 1000; i++) {
             c = new CaveMapper(1000);
             sleeves = c.mainCaves();
             subSleeves = c.subCaves();
-            MyList<Integer> subNums = new MyList<Integer>(1);
+            MyList<Integer> subNums = new MyList<Integer>(1, 1000);
             for (int z = 0; z < subSleeves.size(); z++) {
                 subNums.addInteger(subSleeves.getSleeve(z).getNumber());
             }
