@@ -53,7 +53,7 @@ Toisessa korvaan remove() metodin taulukolla johon merkataan jos hihalla ei ole 
 | 471 | 102 535 | 103 006 | 800 673 | 1 250 000 | 5mil |
 | 579 | 414 031 | 414 610 | 1 598 878 | 2 500 000 | 10mil |
 
-![removella](dokumentaatio/kuvat/)
+![removella](dokumentaatio/kuvat/removella)
 
 #### Aika ilman remove() metodia (tilalla taulukko)
 |mainCaves listan generointi| subCaves listan generointi | kokonaisaika | päähuoneiden määrä | sivuhuoneiden määrä | syvyys |
