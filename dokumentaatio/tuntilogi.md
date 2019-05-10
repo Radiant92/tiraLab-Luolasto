@@ -21,4 +21,5 @@
 | 26.4 | muutoksia, korjailuja ja generoinnin muokkailua/testailua | 2 |
 | 5.5 | UI valmis | 2 |
 | 9.5 | Lisäsin javaDoc:eihin metodien aikavaativuudet ja nopeutin sovelluksen toimintaa huomattavasti | 2 |
-**tunnit yhteensä: 39**
+| 10.5 | sain nopeutettua ohjelmaa entisestään ja tein muutaman viilauksen lisäksi totutusdokumentaation ja muokkasin määrittelydokumenttia | 4 |
+**tunnit yhteensä: 43**
