@@ -55,7 +55,7 @@ Toisessa korvaan remove() metodin taulukolla subCavern() metodissa, johon merkat
 | 579 | 414 031 | 414 610 | 1 598 878 | 2 500 000 | 10mil |
 
 ![removella](https://github.com/Radiant92/tiraLab-Luolasto/blob/master/dokumentaatio/kuvat/removella.png)
-
+**Kuvassa vaikea huomata, mutta punainen ja keltainen viiva kulkee lähes samana**
 #### Aika ilman remove() metodia (tilalla taulukko)
 |mainCaves listan generointi| subCaves listan generointi | kokonaisaika | päähuoneiden määrä | sivuhuoneiden määrä | syvyys |
 |:---:|:---:|:---:|:---:|:---:|:---:|
