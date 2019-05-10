@@ -20,4 +20,6 @@ Jokatapauksessa huoneet ovat kaikki jonkin polun kautta kytköksissä toisiinsa 
 
 [testausdokumentaatio](dokumentaatio/testaus.md)
 
+[javaDocs](docs/javadoc)
+
 [tuntiloki](dokumentaatio/tuntilogi.md)
