@@ -1,6 +1,5 @@
 # Testausdokumentti
 
-## Tehdyt testit
 ### Yksikkötestit
 ![testikattavuus raportti](https://github.com/Radiant92/tiraLab-Luolasto/blob/master/dokumentaatio/kuvat/cave-coverage1.png)
 
